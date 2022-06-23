@@ -16,85 +16,68 @@
               <div class="dashboard-content">
                 <div class="row">
                   <div class="col-12">
-                    <form action="">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <form action="{{ route('dashboard-product-store') }}" method="POST" enctype="multipart/form-data">
+                      @csrf
+                      <input type="hidden" name="users_id" value="{{ Auth::user()->id }}">
                       <div class="card">
                         <div class="card-body">
                           <div class="row">
                             <div class="col-md-6">
                               <div class="form-group">
-                                <label for="name">Product Name</label>
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  id="name"
-                                  aria-describedby="name"
-                                  name="storeName"
-                                  value="Papel La Casa"
-                                />
+                                <label>Product Name</label>
+                                <input type="text" class="form-control" name="name"/>
                               </div>
                             </div>
                             <div class="col-md-6">
                               <div class="form-group">
-                                <label for="price">Price</label>
-                                <input
-                                  type="number"
-                                  class="form-control"
-                                  id="price"
-                                  aria-describedby="price"
-                                  name="price"
-                                  value="200"
-                                />
+                                <label>Price</label>
+                                <input type="number" class="form-control" name="price"/>
                               </div>
                             </div>
                             <div class="col-md-12">
                               <div class="form-group">
                                 <label>Kategori</label>
                                 <select name="categories_id" class="form-control">
-                                   <option value=""></option>  
+                                  @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                  @endforeach
                                 </select>
                               </div>
                             </div>
                             <div class="col-md-12">
                               <div class="form-group">
-                                <label for="description">Description</label>
-                                <textarea
-                                  name="description"
-                                  id="editor"
-                                  cols="30"
-                                  rows="4"
-                                  class="form-control"
-                                >
-The Nike Air Max 720 SE goes bigger than ever before with Nike's tallest Air unit yet for unimaginable, all-day comfort. There's super breathable fabrics on the upper, while colours add a modern edge. Bring the past into the future with the Nike Air Max 2090, a bold look inspired by the DNA of the iconic Air Max 90. Brand-new Nike Air cushioning
-                                </textarea>
+                                <label>Description</label>
+                                <textarea name="description" id="editor"></textarea>
                               </div>
                             </div>
                             <div class="col-md-12">
                               <div class="form-group">
-                                <label for="thumbnails">Thumbnails</label>
-                                <input
-                                  type="file"
-                                  multiple
-                                  class="form-control pt-1"
-                                  id="thumbnails"
-                                  aria-describedby="thumbnails"
-                                  name="thumbnails"
-                                />
-                                <small class="text-muted">
+                                <label>Thumbnails</label>
+                                <input type="file" name="photo" class="form-control" />
+                                <p class="text-muted">
                                   Kamu dapat memilih lebih dari satu file
-                                </small>
+                                </p>
                               </div>
                             </div>
                           </div>
-                        </div>
-                      </div>
-                      <div class="row mt-2">
-                        <div class="col">
-                          <button
-                            type="submit"
-                            class="btn btn-success btn-block px-5"
-                          >
-                            Save Now
-                          </button>
+                          <div class="row">
+                            <div class="col text-right">
+                              <button
+                                type="submit"
+                                class="btn btn-success px-5"
+                              >
+                                Save Now
+                              </button>
+                            </div>
                         </div>
                       </div>
                     </form>
