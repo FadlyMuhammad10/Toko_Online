@@ -26,9 +26,11 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ route('categories') }}">Categories</a>
             </li>
+            <!--
             <li class="nav-item">
               <a class="nav-link" href="#">Rewards</a>
             </li>
+          -->
             @guest{{-- kondisional untuk yang sudah login atau belum --}}
                 <li class="nav-item">
               <a class="nav-link" href="{{ route('register') }}">Sign Up</a>

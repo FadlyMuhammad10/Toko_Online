@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
-
 use App\Cart;
-use App\Transaction;
-use App\TransactionDetail;
+
 use Exception;
-
-use Illuminate\Http\Request;
-
-use Midtrans\Config;
 use Midtrans\Snap;
+use App\Transaction;
+use Midtrans\Config;
+
+use App\TransactionDetail;
+
 use Midtrans\Notification;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 
 class CheckoutController extends Controller
@@ -21,6 +22,8 @@ class CheckoutController extends Controller
     public function process(Request $request)
     {
         //save user data
+        
+        
         $user = Auth::user();
         $user->update($request->except('total_price'));
 
@@ -57,6 +60,7 @@ class CheckoutController extends Controller
         
         // Konfigurasi midtrans
         Config::$serverKey = config('services.midtrans.serverKey');
+        
         Config::$isProduction = config('services.midtrans.isProduction');
         Config::$isSanitized = config('services.midtrans.isSanitized');
         Config::$is3ds = config('services.midtrans.is3ds');

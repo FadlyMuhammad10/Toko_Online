@@ -8,15 +8,15 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.2.5|^8.0",
+        "php": "^7.2.5|^8.0|^8.1",
         "azishapidin/indoregion": "2.2.2",
         "doctrine/dbal": "2.*",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^6.3.1|^7.0.1",
-        "laravel/framework": "^7.29",
+        "laravel/framework": "^8.0",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "2.x",
+        "laravel/ui": "2.x-dev",
         "midtrans/midtrans-php": "^2.5",
         "sentry/sentry-laravel": "^2.12",
         "yajra/laravel-datatables-oracle": "~9.0"
@@ -31,7 +31,10 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
     },
     "extra": {
         "laravel": {
